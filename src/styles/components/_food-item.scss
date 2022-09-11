@@ -1,0 +1,97 @@
+@use '../utils.scss';
+
+.food-item {
+    position: relative;
+    border-radius: .5rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .5s;
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    margin-bottom: 5rem;
+
+    &:hover, &:focus {
+        background-color: rgb(243, 243, 243);
+    }
+
+    &:hover .food-image {
+        width: 120%;
+    }
+
+    &:focus .food-image {
+        width: 120%;
+    }
+
+    img {
+        width: 100%;
+        min-width: 100%;
+        height: 200px;
+        object-fit: cover;
+        background-color: gray;
+        transition: all .5s;
+        min-height: 200px;
+    }
+
+    .content {
+        padding: 1rem;
+        position: relative;
+
+        &-score {
+            position: absolute;
+            left: 2rem;
+            top: -4rem;
+            width: 5rem;
+            height: 5rem;
+            background-color: $primary-color;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 500;
+            border-radius: 100%;
+            box-shadow: 2px 2px 4px rgba($color: #000000, $alpha: .3);
+            z-index: 10;
+        }
+
+        &-score-desc {
+            position: absolute;
+            left: 6rem;
+            top: -2rem;
+            color: $primary-color;
+            background: white;
+            padding: .5rem 2rem;
+            border-radius: .5rem;
+            text-transform: capitalize;
+            z-index: 1;
+            box-shadow: 2px 2px 4px rgba($color: #000000, $alpha: .3);
+        }
+        
+        &-name {
+            font-size: 2rem;
+            font-weight: 500;
+        }
+
+        &-description {
+            font-size: 1.6rem;
+            color: $gray-light;
+        }
+
+        &-dish-container {
+            width:  100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        &-dish {
+            background-color: $primary-color;
+            color: white;
+            padding: .5rem 1rem;
+            border-radius: .5rem;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+        }
+    }
+}

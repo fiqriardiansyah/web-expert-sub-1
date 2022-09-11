@@ -1,0 +1,54 @@
+@import 'utils';
+@import 'pages/home';
+@import 'pages/foods';
+@import 'components/skip-to-content';
+@import 'components/navigation-bar';
+@import 'components/restaurant-list';
+@import 'components/restaurant-item';
+@import 'components/footer-component';
+@import 'components/modal-component';
+@import 'components/restaurant-detail';
+@import 'components/food-list';
+@import 'components/food-item';
+@import 'components/food-detail';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+}
+
+.focusable:focus {
+  border-radius: .5rem;
+  outline: 2px solid $primary-color;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

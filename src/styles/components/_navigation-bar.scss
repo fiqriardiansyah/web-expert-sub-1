@@ -1,0 +1,241 @@
+@use '../utils.scss';
+
+navigation-bar {
+    header {
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        animation-duration: .3s;
+        animation-fill-mode: forwards;
+    
+        &.scroll-down {
+            animation-name: scroll-down;
+        }
+    
+        nav {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+    
+            .restaurant {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+    
+                img {
+                    height: 3rem;
+                }
+                span {
+                    color: white;
+                    font-size: 2rem;
+                    font-weight: 500;
+                    margin-left: 2rem;
+                }
+            }
+    
+            ul {
+                display: none;
+                align-items: center;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+    
+                @media (min-width: $sm){  }
+                @media (min-width: $md){  }
+                @media (min-width: $lg){ display: flex; }
+                @media (min-width: $xl){  }
+    
+                li {
+                    margin-left: 2rem;
+    
+                    a {
+                        color: white;
+                        font-size: 2rem;
+                        text-transform: capitalize;
+                        font-weight: 400;
+                        text-decoration: none;
+                        text-shadow: 2px solid rgba($color: #000000, $alpha: 0.8);
+                        transition: .2s;
+                        padding: .5rem 1.5rem;    
+                        border-radius: .5rem;      
+    
+                        &:hover {
+                            background-color: white;
+                            color: #000000;
+                        }
+    
+                        &.active {
+                            background-color: rgba(233, 233, 233, 0.402);
+                        }
+                    }
+                }
+            }
+    
+            .button-bars {
+                font-size: 3rem;
+                background-color: transparent;
+                color: white;
+                padding: 1rem;
+                border-radius: .5rem;
+                width: 4rem;
+                height: 4rem;
+                border: none;
+    
+                @media (min-width: $sm){  }
+                @media (min-width: $md){  }
+                @media (min-width: $lg){ display: none; }
+                @media (min-width: $xl){  }
+    
+                &:active {
+                    background-color: #acacac;
+                }
+            }
+        }
+    }
+
+    aside {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        background-color: #000000a7;
+        pointer-events: none;
+
+        animation-duration: .3s;
+        animation-fill-mode: forwards;
+        animation-name: aside-out;
+
+        &.show {
+            animation-name: aside-in;
+            animation-fill-mode: forwards;
+            pointer-events: all;
+        }
+
+        @media (min-width: $sm){  }
+        @media (min-width: $md){  }
+        @media (min-width: $lg){ display: none; }
+        @media (min-width: $xl){  }
+
+        .content {
+            overflow-y: auto;
+            width: 80%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            transform: translateX(-100%);
+            transition: all 1s;
+
+            &.show {
+                transform: translate(0);
+            }
+
+            .close {
+                width: 5rem;
+                height: 5rem;
+                border-radius: 100%;
+                border: none;
+                background-color: white;
+                color: grey;
+                font-size: 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                opacity: .5;
+
+                &:active {
+                    opacity: 1;
+                }
+            }
+
+            .logo {
+                width: 100%;
+                background-color: $secondary-color;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 6rem 3rem;
+                margin-bottom: 3rem;
+
+                img {
+                    height: 150px;
+                }
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                width: 100%;
+                
+                li {
+                    margin-bottom: 2rem;
+                    width: 100%;
+
+                    a {
+                        display: block;
+                        width: 100%;
+                        text-decoration: none;
+                        font-size: 2rem;
+                        text-transform: capitalize;
+                        font-weight: 500;
+                        color: gray;
+                        padding: 1rem 2rem;
+
+                        &:active {
+                            opacity: .5;
+                        }
+
+                        &.active {
+                            color: white;
+                            background-color: $secondary-color;
+                        }
+                    }
+                }
+            }
+
+            .author {
+                font-size: 1rem;
+                padding: 3rem 0;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@keyframes scroll-down {
+    0% {
+        background-color: transparent;
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 0.682);
+    }
+}
+
+@keyframes aside-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes aside-out {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
