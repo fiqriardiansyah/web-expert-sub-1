@@ -26,7 +26,7 @@ navigation-bar {
                 text-decoration: none;
     
                 img {
-                    height: 3rem;
+                    height: 4.5rem;
                 }
                 span {
                     color: white;
@@ -50,9 +50,11 @@ navigation-bar {
     
                 li {
                     margin-left: 2rem;
+                    height: 4.5rem !important;
     
                     a {
                         color: white;
+                        height: 100%;
                         font-size: 2rem;
                         text-transform: capitalize;
                         font-weight: 400;
@@ -60,6 +62,9 @@ navigation-bar {
                         text-shadow: 2px solid rgba($color: #000000, $alpha: 0.8);
                         transition: .2s;
                         padding: .5rem 1.5rem;    
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                         border-radius: .5rem;      
     
                         &:hover {
