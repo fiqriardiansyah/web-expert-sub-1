@@ -78,11 +78,11 @@ navigation-bar {
                 font-size: 3rem;
                 background-color: transparent;
                 color: white;
-                padding: 1rem;
                 border-radius: .5rem;
-                width: 4rem;
-                height: 4rem;
+                width: 5rem;
+                height: 5rem;
                 border: none;
+                background-color: rgb(201, 201, 201);
     
                 @media (min-width: $sm){  }
                 @media (min-width: $md){  }
