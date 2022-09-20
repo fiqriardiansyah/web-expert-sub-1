@@ -47,7 +47,9 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@lottiefiles/lottie-player": "^1.5.7",
     "axios": "^0.27.2",
+    "idb": "^7.0.2",
     "query-string": "^7.1.1",
     "regenerator-runtime": "^0.13.9",
     "workbox-routing": "^6.5.4",

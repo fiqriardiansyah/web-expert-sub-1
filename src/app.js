@@ -3,6 +3,7 @@ import './pages';
 import './module';
 import './components';
 
+import '@lottiefiles/lottie-player';
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import {
   faArrowDownLong, faArrowUpLong, faArrowLeftLong, faXmark, faBars,

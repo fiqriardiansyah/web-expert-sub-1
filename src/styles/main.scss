@@ -1,6 +1,7 @@
 @import 'utils';
 @import 'pages/home';
 @import 'pages/foods';
+@import 'pages/favorite';
 @import 'pages/detail-restaurant';
 @import 'components/skip-to-content';
 @import 'components/navigation-bar';
@@ -14,6 +15,8 @@
 @import 'components/food-detail';
 @import 'components/navigation-detail-bar';
 @import 'components/offline-component';
+@import 'components/favorite-restaurant-list';
+@import 'components/empty-component';
 
 * {
   padding: 0;

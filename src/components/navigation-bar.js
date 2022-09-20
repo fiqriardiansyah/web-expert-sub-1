@@ -57,7 +57,7 @@ class NavigationBar extends HTMLElement {
     return `
       <ul class="">
           <li class=""><a href="#${HOME}" class="focusable ${this.activePageKey === HOME ? 'active' : ''}">home</a></li>
-          <li class=""><a href="#" class="focusable ${this.activePageKey === FAVORITE ? 'active' : ''}">favorite</a></li>
+          <li class=""><a href="#${FAVORITE}" class="focusable ${this.activePageKey === FAVORITE ? 'active' : ''}">favorite</a></li>
           <li class=""><a href="#${FOODS}" class="focusable ${this.activePageKey === FOODS ? 'active' : ''}">foods</a></li>
           <li class=""><a target="_blank" href="https://github.com/fiqriardiansyah" class="focusable">about us</a></li>
       </ul>

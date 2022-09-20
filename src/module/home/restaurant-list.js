@@ -1,4 +1,4 @@
-import Apis from '../../config/apis';
+import Apis from '../../data/apis';
 import Utils from '../../utils';
 
 class RestaurantList extends HTMLElement {

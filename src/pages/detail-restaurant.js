@@ -1,5 +1,7 @@
+/* eslint-disable consistent-return */
 import Utils from '../utils';
-import Apis from '../config/apis';
+import Apis from '../data/apis';
+import idb from '../data/idb';
 
 export const DETAIL_RESTAURANT_PAGE = 'detail-restaurant-page';
 
@@ -72,6 +74,7 @@ class DetailRestaurantPage extends HTMLElement {
   renderNavigationDetailBar() {
     const navigationDetailBar = document.createElement('navigation-detail-bar');
     navigationDetailBar.setTitle(this.isOffline() ? 'offline' : this.restaurant?.name);
+    navigationDetailBar.setHref(window.linkback);
     this?.append(navigationDetailBar);
   }
 
@@ -89,10 +92,24 @@ class DetailRestaurantPage extends HTMLElement {
     });
   }
 
-  favoriteHandlerClick() {
-    const button = document.querySelector('.btn-favorite');
-    button?.addEventListener('click', () => {
+  async isFavorite() {
+    if (!this.restaurant) return false;
+    const button = this.querySelector('.btn-favorite');
+    const isFavorite = await idb.getRestaurant(this.restaurant.id);
+    if (!isFavorite) return;
+    button?.classList.add('true');
+  }
 
+  favoriteHandlerClick() {
+    const button = this.querySelector('.btn-favorite');
+    button?.addEventListener('click', async () => {
+      if (!button.className.includes('true')) {
+        await idb.putRestaurant(this.restaurant);
+        button.classList.add('true');
+        return;
+      }
+      await idb.deleteRestaurant(this.restaurant.id);
+      button.classList.remove('true');
     });
   }
 
@@ -226,6 +243,7 @@ class DetailRestaurantPage extends HTMLElement {
     this.renderNavigationDetailBar();
     this.formReview();
     this.favoriteHandlerClick();
+    this.isFavorite();
   }
 }
 

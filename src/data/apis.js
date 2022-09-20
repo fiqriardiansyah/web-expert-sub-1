@@ -1,4 +1,4 @@
-import { dicodingClient, spoonacularClient } from './axios';
+import { dicodingClient, spoonacularClient } from '../config/axios';
 
 class Apis {
   static getRandomRecipes() {

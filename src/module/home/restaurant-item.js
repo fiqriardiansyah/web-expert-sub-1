@@ -1,36 +1,17 @@
 import Utils from '../../utils';
-import { RESTAURANT } from '../../utils/constant';
+import { RESTAURANT, pages } from '../../utils/constant';
 
 class RestaurantItem extends HTMLElement {
   setRestaurant(restaurant) {
     this.restaurant = restaurant;
     this.render();
-    // this.injectModal();
   }
 
-  // injectModal() {
-  //   if (!document.querySelector('.modal-container')) {
-  //     this.modalContainer = document.createElement('div');
-  //     this.modalContainer.classList.add('modal-container');
-  //     document.body.appendChild(this.modalContainer);
-  //     this.modal = document.createElement('modal-component');
-  //     this.modalContainer.appendChild(this.modal);
-  //   } else {
-  //     this.modalContainer = document.querySelector('.modal-container');
-  //     this.modal = document.createElement('modal-component');
-  //     this.modalContainer.appendChild(this.modal);
-  //   }
-  // }
-
-  // showDetail() {
-  //   window.restaurantitem = this.querySelector('.restaurant-item'); // save this element for autofocus after modal close later
-
-  //   const detail = document.createElement('restaurant-detail');
-  //   detail.setRestaurant(this.restaurant);
-
-  //   this.modal.setContent(detail.outerHTML, this.restaurant.name);
-  //   this.modal.showModal();
-  // }
+  clickHandler() {
+    this.addEventListener('click', () => {
+      window.linkback = pages.find((el) => el.key === Utils.watchUrl().key).key || '';
+    });
+  }
 
   render() {
     this.innerHTML = `
@@ -44,6 +25,7 @@ class RestaurantItem extends HTMLElement {
           </div>
         </a>
     `;
+    this.clickHandler();
   }
 }
 
