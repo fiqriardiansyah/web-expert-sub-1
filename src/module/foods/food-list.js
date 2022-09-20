@@ -2,10 +2,6 @@ import Apis from '../../data/apis';
 import Utils from '../../utils';
 
 class FoodList extends HTMLElement {
-  // connectedCallback() {
-  //   this.getRandomRecipes();
-  // }
-
   isOffline() {
     return (!this.foods && !Utils.isOnline());
   }
