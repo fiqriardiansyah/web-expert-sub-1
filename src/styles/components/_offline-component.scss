@@ -1,0 +1,24 @@
+.offline {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    img {
+      width: 20rem;
+      fill: $primary-color;
+    }
+  
+    h1 {
+      font-size: 2.5rem;
+      color: rgb(105, 105, 105);
+    }
+  
+    p {
+      font-size: 1.8rem;
+      color: rgb(185, 185, 185);
+    }
+  
+  }

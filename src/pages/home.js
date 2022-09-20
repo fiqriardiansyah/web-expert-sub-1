@@ -1,3 +1,5 @@
+export const INDEX_PAGE = 'index-page';
+
 class IndexPage extends HTMLElement {
   connectedCallback() {
     this.render();
@@ -30,4 +32,5 @@ class IndexPage extends HTMLElement {
   }
 }
 
-customElements.define('index-page', IndexPage);
+customElements.define(INDEX_PAGE, IndexPage);
+export default IndexPage;

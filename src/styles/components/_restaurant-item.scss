@@ -1,6 +1,7 @@
 @use '../utils.scss';
 
 .restaurant-item {
+    display: block;
     position: relative;
     border-radius: .5rem;
     overflow: hidden;
@@ -10,6 +11,7 @@
     border: none;
     text-align: left;
     margin-bottom: 5rem;
+    text-decoration: none;
     
     &:hover, &:focus {
         background-color: rgb(243, 243, 243);

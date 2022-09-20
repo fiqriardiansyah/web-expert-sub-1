@@ -1,30 +1,42 @@
 import axios from 'axios';
 import { responseLogger, requestLogger, errorLogger } from 'axios-logger';
 
-const client = axios.create();
+export const spoonacularClient = axios.create();
+export const dicodingClient = axios.create();
 
-client.defaults.baseURL = process.env.BASE_URL;
-client.defaults.timeout = 10000;
-client.defaults.validateStatus = () => true;
+axios.defaults.timeout = 10000;
+axios.defaults.validateStatus = () => true;
 
-client.interceptors.request.use((req) => {
+const responseInterceptors = (res) => {
+  const { status, data } = res;
+  if (status.response?.status < 200 && status.response?.status >= 300) {
+    // alert(data?.message || 'Ooops something went wrong');
+    console.log(data);
+  }
+  return process.env.NODE_ENV === 'development' ? responseLogger(res) : res;
+};
+
+const responseInterceptorsError = (error) => {
+  if (error.response?.status < 200 && error.response?.status >= 300) {
+    // alert(error.response?.message || 'Ooops something went wrong');
+    console.log(error);
+  }
+  return process.env.NODE_ENV === 'development' ? errorLogger(error) : error;
+};
+
+const requestInterceptorsError = (error) => (process.env.NODE_ENV === 'development' ? errorLogger(error) : error);
+
+spoonacularClient.defaults.baseURL = process.env.SPOONACULAR_BASE_URL;
+spoonacularClient.interceptors.request.use((req) => {
   req.params = {
     apiKey: `${process.env.API_KEY}`,
   };
   return process.env.NODE_ENV === 'development' ? requestLogger(req) : req;
-}, (error) => (process.env.NODE_ENV === 'development' ? errorLogger(error) : error));
+}, requestInterceptorsError);
+spoonacularClient.interceptors.response.use(responseInterceptors, responseInterceptorsError);
 
-client.interceptors.response.use((res) => {
-  const { status, data } = res;
-  if (status !== 200) {
-    alert(data?.status_message || 'Ooops something went wrong');
-  }
-  return process.env.NODE_ENV === 'development' ? responseLogger(res) : res;
-}, (error) => {
-  if (error.response?.status !== 200) {
-    alert(error.response?.status_message || 'Ooops something went wrong');
-  }
-  return process.env.NODE_ENV === 'development' ? errorLogger(error) : error;
-});
+dicodingClient.defaults.baseURL = process.env.DICODING_BASE_URL;
+dicodingClient.interceptors.request.use((req) => (process.env.NODE_ENV === 'development' ? requestLogger(req) : req), requestInterceptorsError);
+dicodingClient.interceptors.response.use(responseInterceptors, responseInterceptorsError);
 
-export default client;
+export default {};

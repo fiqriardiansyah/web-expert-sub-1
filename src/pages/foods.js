@@ -1,3 +1,5 @@
+export const FOODS_PAGE = 'foods-page';
+
 class FoodsPage extends HTMLElement {
   connectedCallback() {
     this.render();
@@ -26,5 +28,5 @@ class FoodsPage extends HTMLElement {
   }
 }
 
-customElements.define('foods-page', FoodsPage);
+customElements.define(FOODS_PAGE, FoodsPage);
 export default FoodsPage;

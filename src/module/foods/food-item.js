@@ -1,4 +1,4 @@
-import Utils from '../utils';
+import Utils from '../../utils';
 
 class FoodItem extends HTMLElement {
   setFood(food) {
@@ -27,7 +27,7 @@ class FoodItem extends HTMLElement {
     const detail = document.createElement('food-detail');
     detail.setFood(this.food);
 
-    this.modal.setContent(detail.outerHTML, this.food.title);
+    this.modal.setContent(detail.outerHTML, this.food?.title);
     this.modal.showModal();
   }
 
@@ -43,7 +43,7 @@ class FoodItem extends HTMLElement {
               <p class="content-name">${this.food?.title}</p>
               <p class="content-description mb-2">${Utils.cutText(200, this.food?.creditsText)}</p>
               <div class="content-dish-container">
-                ${this.food.dishTypes?.map((el) => `<span class="content-dish">${el}</span>`).join('')}
+                ${this.food?.dishTypes?.map((el) => `<span class="content-dish">${el}</span>`).join('')}
               </div>
           </div>
         </button>

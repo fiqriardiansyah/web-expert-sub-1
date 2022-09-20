@@ -1,11 +1,7 @@
 export { default as SkipToContent } from './skip-to-content';
 export { default as NavigationBar } from './navigation-bar';
-export { default as RestaurantList } from './restaurant-list';
-export { default as RestaurantItem } from './restaurant-item';
 export { default as FooterComponent } from './footer-component';
 export { default as ModalComponent } from './modal-component';
-export { default as RestaurantDetail } from './restaurant-detail';
-export { default as FoodItem } from './food-item';
-export { default as FoodList } from './food-list';
 export { default as LoadingComponent } from './loading-component';
-export { default as FoodDetail } from './food-detail';
+export { default as NavigationDetailBar } from './navigation-detail-bar';
+export { default as OfflineComponent } from './offline-component';

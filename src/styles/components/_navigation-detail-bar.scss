@@ -1,0 +1,39 @@
+navigation-detail-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    .content {
+        width: 100vw;
+        background-color: rgba(0, 0, 0, 0.459);
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        display: flex;
+        align-items: center;
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 100%;
+            background-color: white;
+            color: grey;
+            font-size: 1.6rem;
+
+            &:hover {
+                opacity: .6;
+            }
+        }
+
+        p {
+            font-size: 2rem;
+            font-weight: 400;
+            text-transform: capitalize;
+            color: white;
+            margin-left: 2rem;
+        }
+    }
+}

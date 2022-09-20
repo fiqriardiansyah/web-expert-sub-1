@@ -12,7 +12,7 @@ class NavigationBar extends HTMLElement {
   }
 
   activePage() {
-    const keyPage = Utils.watchUrl();
+    const keyPage = Utils.watchUrl().key;
     const page = pages.find((el) => el.key === keyPage);
     if (page) {
       this.activePageKey = page.key;
