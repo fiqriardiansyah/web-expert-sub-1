@@ -3,6 +3,33 @@ export const INDEX_PAGE = 'index-page';
 class IndexPage extends HTMLElement {
   connectedCallback() {
     this.render();
+    this.getAllRestaurant();
+  }
+
+  getSearchRestaurant(value) {
+    this.restaurantList.getSearchRestaurant(value);
+  }
+
+  getAllRestaurant() {
+    this.restaurantList.getListRestaurant();
+  }
+
+  injectFormSearch() {
+    this.formSearch = document.createElement('form-search');
+    this.formSearch.setPlaceholder('Search restaurant');
+    this.formSearch.onSubmitHandler((value) => {
+      if (!value) {
+        this.getAllRestaurant();
+        return;
+      }
+      this.getSearchRestaurant(value);
+    });
+    this.formContainer.append(this.formSearch);
+  }
+
+  injectRestaurants() {
+    this.restaurantList = document.createElement('restaurant-list');
+    this.restaurantsContainer.append(this.restaurantList);
   }
 
   render() {
@@ -22,13 +49,23 @@ class IndexPage extends HTMLElement {
                 </a>
             </div>
             <main class="mt-10 mb-10 container" id="main">
-              <h1 class="welcome">welcome to DEV Restaurant</h1>
-              <p class="welcome-desc mb-5">home of good restaurants</p>
-              <restaurant-list></restaurant-list>
+              <div class="flex">
+                <div class="">
+                  <h1 class="welcome">welcome to DEV Restaurant</h1>
+                  <p class="welcome-desc mb-5">home of good restaurants</p>
+                </div>
+                <div class="form-container"></div>
+              </div>
+              <div class="restaurants-container"></div>
             </main>
           </div>
           <footer-component></footer-component>
         `;
+
+    this.formContainer = this.querySelector('.form-container');
+    this.restaurantsContainer = this.querySelector('.restaurants-container');
+    this.injectRestaurants();
+    this.injectFormSearch();
   }
 }
 

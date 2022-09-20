@@ -2,9 +2,9 @@ import Apis from '../../data/apis';
 import Utils from '../../utils';
 
 class FoodList extends HTMLElement {
-  connectedCallback() {
-    this.getRandomRecipes();
-  }
+  // connectedCallback() {
+  //   this.getRandomRecipes();
+  // }
 
   isOffline() {
     return (!this.foods && !Utils.isOnline());
@@ -18,6 +18,21 @@ class FoodList extends HTMLElement {
       this.foods = res.data?.recipes;
       this.render();
     }).catch((err) => {
+      this.setLoading(false);
+      this.setError(err?.message || 'oops something went wrong');
+    });
+  }
+
+  getSearchRecipes(query) {
+    this.query = query;
+    this.setLoading(true);
+    this.setError(null);
+    Apis.getSearchRecipes(query).then((res) => {
+      this.setLoading(false);
+      this.foods = res.data?.results;
+      this.render();
+    }).catch((err) => {
+      this.setLoading(false);
       this.setError(err?.message || 'oops something went wrong');
     });
   }
@@ -58,6 +73,11 @@ class FoodList extends HTMLElement {
 
     if (this.isOffline()) {
       this.offlineContent();
+      return;
+    }
+
+    if (!this.foods || this.foods?.length === 0) {
+      this.innerHTML = `<empty-component text="Searching keyword '${this.query}' not found" ></empty-component>`;
       return;
     }
 

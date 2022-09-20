@@ -7,7 +7,7 @@ import '@lottiefiles/lottie-player';
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import {
   faArrowDownLong, faArrowUpLong, faArrowLeftLong, faXmark, faBars,
-  faBowlFood, faMugHot, faHeart,
+  faBowlFood, faMugHot, faHeart, faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Utils from './utils/index';
@@ -45,6 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
   library.add(faMugHot);
   library.add(faBowlFood);
   library.add(faHeart);
+  library.add(faMagnifyingGlass);
   dom.watch();
 
   renderPage();

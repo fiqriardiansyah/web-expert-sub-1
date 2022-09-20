@@ -10,16 +10,14 @@ axios.defaults.validateStatus = () => true;
 const responseInterceptors = (res) => {
   const { status, data } = res;
   if (status.response?.status < 200 && status.response?.status >= 300) {
-    // alert(data?.message || 'Ooops something went wrong');
-    console.log(data);
+    throw Error(data?.message || 'Ooops something went wrong!');
   }
   return process.env.NODE_ENV === 'development' ? responseLogger(res) : res;
 };
 
 const responseInterceptorsError = (error) => {
   if (error.response?.status < 200 && error.response?.status >= 300) {
-    // alert(error.response?.message || 'Ooops something went wrong');
-    console.log(error);
+    throw Error(error.response.data?.message || 'Ooops something went wrong!');
   }
   return process.env.NODE_ENV === 'development' ? errorLogger(error) : error;
 };

@@ -2,10 +2,6 @@ import Apis from '../../data/apis';
 import Utils from '../../utils';
 
 class RestaurantList extends HTMLElement {
-  connectedCallback() {
-    this.getListRestaurant();
-  }
-
   isOffline() {
     return (!this.restaurants && !Utils.isOnline());
   }
@@ -16,9 +12,31 @@ class RestaurantList extends HTMLElement {
     Apis.getListRestaurant().then((res) => {
       this.setLoading(false);
       this.restaurants = res.data?.restaurants;
+      if (res.data?.error) {
+        this.setError(res.data?.message || 'oops something went wrong');
+        return;
+      }
       this.render();
     }).catch((err) => {
       this.setError(err?.message || 'oops something went wrong');
+    });
+  }
+
+  getSearchRestaurant(query) {
+    this.query = query;
+    this.setLoading(true);
+    this.setError(null);
+    Apis.getSearchRestaurant(query).then((res) => {
+      this.setLoading(false);
+      this.restaurants = res.data?.restaurants;
+      if (res.data?.error) {
+        this.setError(res.data?.message || 'oops something went wrong');
+        return;
+      }
+      this.render();
+    }).catch((err) => {
+      this.setLoading(false);
+      this.setError(err.response.data?.message || 'oops something went wrong');
     });
   }
 
@@ -67,6 +85,11 @@ class RestaurantList extends HTMLElement {
 
     if (this.isOffline()) {
       this.offlineContent();
+      return;
+    }
+
+    if (!this.restaurants || this.restaurants?.length === 0) {
+      this.innerHTML = `<empty-component text="Searching keyword '${this.query}' not found" ></empty-component>`;
       return;
     }
 

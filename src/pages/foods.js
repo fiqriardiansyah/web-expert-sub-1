@@ -3,6 +3,33 @@ export const FOODS_PAGE = 'foods-page';
 class FoodsPage extends HTMLElement {
   connectedCallback() {
     this.render();
+    this.getRandomRecipes();
+  }
+
+  getRandomRecipes() {
+    this.foodList.getRandomRecipes();
+  }
+
+  getSearchRecipes(value) {
+    this.foodList.getSearchRecipes(value);
+  }
+
+  injectFormSearch() {
+    this.formSearch = document.createElement('form-search');
+    this.formSearch.setPlaceholder('Search food');
+    this.formSearch.onSubmitHandler((value) => {
+      if (!value) {
+        this.getRandomRecipes();
+        return;
+      }
+      this.getSearchRecipes(value);
+    });
+    this.formContainer.append(this.formSearch);
+  }
+
+  injectFoods() {
+    this.foodList = document.createElement('food-list');
+    this.foodsContainer.append(this.foodList);
   }
 
   render() {
@@ -18,13 +45,23 @@ class FoodsPage extends HTMLElement {
                       </div>
                   </div>
                   <main class="mt-10 mb-10 container" id="main">
-                    <h1 class="welcome">Recommended food today</h1>
-                    <p class="welcome-desc mb-5">feel a million flavors in your mouth</p>
-                    <food-list></food-list>
+                    <div class="flex">
+                      <div class="">
+                        <h1 class="welcome">Recommended food today</h1>
+                        <p class="welcome-desc mb-5">feel a million flavors in your mouth</p>
+                      </div>
+                      <div class="form-container"></div>
+                    </div>
+                    <div class="foods-container"></div>
                   </main>
                   <footer-component></footer-component>
               </div>
           `;
+
+    this.formContainer = this.querySelector('.form-container');
+    this.foodsContainer = this.querySelector('.foods-container');
+    this.injectFoods();
+    this.injectFormSearch();
   }
 }
 

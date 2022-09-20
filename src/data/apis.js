@@ -5,6 +5,10 @@ class Apis {
     return spoonacularClient.get('/recipes/random?number=20');
   }
 
+  static getSearchRecipes(query) {
+    return spoonacularClient.get(`recipes/complexSearch?query=${query}&number=20&instructionsRequired=true&addRecipeInformation=true`);
+  }
+
   static getListRestaurant() {
     return dicodingClient.get('/list');
   }

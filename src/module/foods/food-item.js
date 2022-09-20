@@ -37,11 +37,11 @@ class FoodItem extends HTMLElement {
           <img class="food-image" src="${this.food?.image}" alt="${this.food?.title}" onerror="this.onerror=null;this.src='/images/placeholder.png'" />
           <div class="content">
               <span class="content-score">
-                ${this.food?.healthScore}
+                ${this.food?.healthScore || 0}
               </span>
               <span class="content-score-desc">healt score</span>
               <p class="content-name">${this.food?.title}</p>
-              <p class="content-description mb-2">${Utils.cutText(200, this.food?.creditsText)}</p>
+              <p class="content-description mb-2">${Utils.cutText(200, this.food?.creditsText || '')}</p>
               <div class="content-dish-container">
                 ${this.food?.dishTypes?.map((el) => `<span class="content-dish">${el}</span>`).join('')}
               </div>
