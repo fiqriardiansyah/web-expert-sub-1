@@ -120,8 +120,12 @@ detail-restaurant-page {
                         cursor: pointer;
                         margin-left: 1rem;
 
-                        &.true, &:hover {
+                        &.true {
                             color: rgb(255, 103, 103);
+                        }
+
+                        &:hover {
+                            color: rgb(255, 165, 165);
                         }
                     }
 
