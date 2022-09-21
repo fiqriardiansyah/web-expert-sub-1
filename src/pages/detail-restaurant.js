@@ -33,7 +33,7 @@ class DetailRestaurantPage extends HTMLElement {
         this.restaurant = data?.restaurant;
         this.setLoading({ ...this.loading, getDetail: false });
       }).catch((err) => {
-        this.setError({ ...this.error, getDetail: err?.message || 'oops something went wrong' });
+        this.setError({ ...this.error, getDetail: err.response.data?.message || 'oops something went wrong' });
         this.setLoading({ ...this.loading, getDetail: false });
       });
       return;
@@ -56,7 +56,7 @@ class DetailRestaurantPage extends HTMLElement {
       };
       this.setLoading({ ...this.loading, postReview: false });
     }).catch((err) => {
-      this.setError({ ...this.error, postReview: err?.message || 'oops something went wrong' });
+      this.setError({ ...this.error, postReview: err.response.data?.message || 'oops something went wrong' });
       this.setLoading({ ...this.loading, postReview: false });
     });
   }
