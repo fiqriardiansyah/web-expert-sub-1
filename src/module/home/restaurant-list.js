@@ -67,8 +67,8 @@ class RestaurantList extends HTMLElement {
   render() {
     if (this.loading) {
       this.innerHTML = `
-        <div class="loading-container">
-            <loading-component size="100"></loading-component>
+        <div class="list">
+          ${[...new Array(6)].map((el) => '<card-skeleton></card-skeleton>').join('')}
         </div>
       `;
       return;

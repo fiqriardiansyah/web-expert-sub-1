@@ -223,10 +223,7 @@ class DetailRestaurantPage extends HTMLElement {
 
     if (this.loading?.getDetail) {
       this.innerHTML = `
-        <div class="loading-container">
-            <loading-component size="100"></loading-component>
-            <p class="">Getting restaurant...</p>
-        </div>
+        <detail-restaurant-skeleton></detail-restaurant-skeleton>
       `;
       return;
     }

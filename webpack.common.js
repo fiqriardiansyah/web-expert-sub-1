@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const webpack = require('webpack');
 require('dotenv').config({
@@ -10,7 +11,6 @@ require('dotenv').config({
 module.exports = {
   entry: {
     app: path.resolve(__dirname, 'src/app.js'),
-    // sw: path.resolve(__dirname, 'src/scripts/sw.js'),
   },
   output: {
     filename: '[name].bundle.js',
@@ -41,5 +41,6 @@ module.exports = {
         },
       ],
     }),
+    new BundleAnalyzerPlugin(),
   ],
 };

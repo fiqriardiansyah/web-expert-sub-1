@@ -7,3 +7,5 @@ export { default as NavigationDetailBar } from './navigation-detail-bar';
 export { default as OfflineComponent } from './offline-component';
 export { default as EmptyComponent } from './empty-component';
 export { default as FormSearch } from './form-search';
+export { default as CardSkeleton } from './card-skeleton';
+export { default as DetailRestaurantSkeleton } from './detail-restaurant-skeleton';

@@ -11,7 +11,11 @@ class FavoritePage extends HTMLElement {
             <navigation-bar></navigation-bar>
             <div class="layout">
                 <div class="jumbotron" id="jumbotron">
-                    <img src="./images/heros/hero-image_3.jpg" alt="jumbotron" class="jumbotron-background" />
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="./images/heros/hero-image_3-small.jpg">
+                        <img src="./images/heros/hero-image_3.jpg" class="jumbotron-background"
+                            alt="jumbotron">
+                      </picture>
                     <div class="jumbotron-content">
                         <h1 class="">Favorite Restaurant</h1>
                         <img src="./images/icon.png" alt="dev restaurant" class="" />

@@ -34,7 +34,7 @@ class FoodItem extends HTMLElement {
   render() {
     this.innerHTML = `
         <button class="food-item focusable">
-          <img class="food-image" src="${this.food?.image}" alt="${this.food?.title}" onerror="this.onerror=null;this.src='/images/placeholder.png'" />
+          <img class="food-image lazyload" data-src="${this.food?.image}" alt="${this.food?.title}" onerror="this.onerror=null;this.src='/images/placeholder.png'" />
           <div class="content">
               <span class="content-score">
                 ${this.food?.healthScore || 0}

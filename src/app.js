@@ -3,6 +3,9 @@ import './pages';
 import './module';
 import './components';
 
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+
 import '@lottiefiles/lottie-player';
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import {

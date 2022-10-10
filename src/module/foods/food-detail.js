@@ -7,7 +7,7 @@ class FoodDetail extends HTMLElement {
   render() {
     this.innerHTML = `
           <div class="image">
-          <img src="${this.food?.image}" alt="${this.food?.title}" class="" onerror="this.onerror=null;this.src='/images/placeholder.png'" />
+          <img data-src="${this.food?.image}" alt="${this.food?.title}" class="lazyload" onerror="this.onerror=null;this.src='/images/placeholder.png'" />
           </div>
           <div class="content">
             <span class="score">healt score: ${this.food?.healthScore}</span>

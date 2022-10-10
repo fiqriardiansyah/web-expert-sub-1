@@ -38,7 +38,11 @@ class IndexPage extends HTMLElement {
           <navigation-bar></navigation-bar>
           <div class="layout">
             <div class="jumbotron" id="jumbotron">
-                <img src="./images/heros/hero-image_1.jpg" alt="jumbotron" class="jumbotron-background" />
+                <picture class="jumbotron-background">
+                  <source media="(max-width: 600px)" srcset="./images/heros/hero-image_1-small.jpg">
+                  <img src="./images/heros/hero-image_1.jpg" class="jumbotron-background"
+                      alt="jumbotron">
+                </picture>
                 <div class="jumbotron-content">
                     <h1 class="">DEV Restaurant</h1>
                     <img src="./images/icon.png" alt="dev restaurant" class="" />
