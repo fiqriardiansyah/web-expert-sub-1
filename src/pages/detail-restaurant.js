@@ -1,12 +1,12 @@
 /* eslint-disable consistent-return */
 import Utils from '../utils';
 import Apis from '../data/apis';
-import idb from '../data/idb';
+import DetailRestaurant from '../module/detail-restaurant/detail-restaurant';
 
 export const DETAIL_RESTAURANT_PAGE = 'detail-restaurant-page';
 
 class DetailRestaurantPage extends HTMLElement {
-  connectedCallback() {
+  async connectedCallback() {
     this.idRestaurant = Utils.watchUrl().param;
     this.loading = {
       getDetail: false,
@@ -92,126 +92,11 @@ class DetailRestaurantPage extends HTMLElement {
     });
   }
 
-  async isFavorite() {
-    if (!this.restaurant) return false;
-    const button = this.querySelector('.btn-favorite');
-    const isFavorite = await idb.getRestaurant(this.restaurant.id);
-    if (!isFavorite) return;
-    button?.classList.add('true');
-  }
-
-  favoriteHandlerClick() {
-    const button = this.querySelector('.btn-favorite');
-    button?.addEventListener('click', async () => {
-      if (!button.className.includes('true')) {
-        await idb.putRestaurant(this.restaurant);
-        button.classList.add('true');
-        return;
-      }
-      await idb.deleteRestaurant(this.restaurant.id);
-      button.classList.remove('true');
-    });
-  }
-
-  onlineContent() {
-    return `
-    <div class="jumbotron" id="jumbotron">
-      <img src="https://restaurant-api.dicoding.dev/images/large/${this.restaurant?.pictureId}" alt="${this.restaurant?.name}" class="" />
-      <div class="">
-        <h1 class="">${this.restaurant?.name}</h1>
-        <p class="">${this.restaurant?.address}, ${this.restaurant?.city}</p>
-      </div>
-    </div>
-    <div class="content container">
-
-      <div class="restaurant">
-        <div class="restaurant-img">
-          <img src="https://restaurant-api.dicoding.dev/images/medium/${this.restaurant?.pictureId}" alt="${this.restaurant?.name}" />
-        </div>
-        <div class="restaurant-info">
-          <div class="flex">
-            <div class="restaurant-info-rating">
-              ${this.restaurant?.rating}
-            </div>
-            <button class="btn-favorite focusable">
-              <i class="fa-solid fa-heart">favorite</i>
-            </button>
-          </div>
-          <h2 class="restaurant-info-name">
-          ${this.restaurant?.name}
-          </h2>
-          <p class="restaurant-info-address">
-          ${this.restaurant?.address}, ${this.restaurant?.city}
-          </p>
-          <p class="restaurant-info-desc">
-          ${this.restaurant?.description}
-          </p>
-          <div class="restaurant-info-categories">
-            ${this.restaurant?.categories?.map((el) => `<p class="">${el?.name}</p>`).join(' ')}
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-review">
-        <div class="menu">
-          <h2 class="menu-title">Menus</h2>
-          <div class="flex">
-            <div class="foods-flex">
-              <p class="title">Foods</p>
-              ${this.restaurant?.menus?.foods?.map((el) => `
-              <div class="food">
-                <i class="fa-solid fa-bowl-food"></i>
-                <p class="">${el?.name}</p>
-                </div>`).join(' ')}
-            </div>
-            <div class="drinks-flex">
-              <p class="title">Drinks</p>
-              ${this.restaurant?.menus?.drinks?.map((el) => `
-              <div class="drink">
-                <i class="fa-solid fa-mug-hot"></i>
-                <p class="">${el?.name}</p>
-                </div>`).join(' ')}
-            </div>
-          </div>
-        </div>
-        <div class="review">
-          <h2 class="review-title">Reviews</h2>
-          ${this.restaurant?.customerReviews?.map((el) => `
-          <div class="review-item">
-            <div class="review-item-head">
-              <p class="name">${el?.name}</p>
-              <p class="date">${el?.date}</p>
-            </div>
-            <hr />
-            <p class="review">
-              ${el?.review}
-            </p>
-          </div>`).join(' ')}
-
-          <div class="form-review">
-            <p class="title">Write your own story</p>
-            <form>
-              <input class="focusable" type="text" name="name" placeholder="Your name" />
-              <textarea class="focusable" name="review" placeholder="Your review"></textarea>
-              <button class="send" type="button">
-                ${this.loading.postReview ? '<loading-component></loading-component>' : 'send'}
-              </button>
-              ${this.error.postReview ? `
-                <div class="error-message">
-                  ${this.error?.postReview}
-                </div>` : ''}
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>`;
-  }
-
   offlineContent() {
     return '<offline-component></offline-component>';
   }
 
-  render() {
+  async render() {
     if (this.error?.getDetail) {
       this.innerHTML = `
         <div class="error-message">
@@ -228,10 +113,16 @@ class DetailRestaurantPage extends HTMLElement {
       return;
     }
 
+    const isFavorite = await DetailRestaurant.isFavorite({ restaurant: this.restaurant });
+
     this.innerHTML = `
             <div class="layout">
               <main>
-                ${this.isOffline() ? this.offlineContent() : this.onlineContent()}
+                ${this.isOffline()
+    ? this.offlineContent()
+    : DetailRestaurant.content({
+      restaurant: this.restaurant, loading: this.loading, error: this.error, isFavorite,
+    })}
               </main>
             </div>
             <footer-component></footer-component>
@@ -239,8 +130,7 @@ class DetailRestaurantPage extends HTMLElement {
 
     this.renderNavigationDetailBar();
     this.formReview();
-    this.favoriteHandlerClick();
-    this.isFavorite();
+    DetailRestaurant.favoriteHandlerClick({ restaurant: this.restaurant });
   }
 }
 

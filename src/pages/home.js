@@ -45,7 +45,7 @@ class IndexPage extends HTMLElement {
                 </picture>
                 <div class="jumbotron-content">
                     <h1 class="">DEV Restaurant</h1>
-                    <img src="./images/icon.png" alt="dev restaurant" class="" />
+                    <img src="./images/icons/icon-512.png" alt="dev restaurant" class="" />
                 </div>
                 <a class="focusable" href="#main">
                   <i class="fa-solid fa-arrow-down-long mr-1"></i>

@@ -45,7 +45,7 @@ class FoodsPage extends HTMLElement {
                       </picture>
                       <div class="jumbotron-content">
                           <h1 class="">DEV Foods</h1>
-                          <img src="./images/icon.png" alt="dev restaurant" class="" />
+                          <img src="./images/icons/icon-512.png" alt="dev restaurant" class="" />
                       </div>
                   </div>
                   <main class="mt-10 mb-10 container" id="main">
