@@ -307,6 +307,10 @@ detail-restaurant-page {
                             flex-direction: column;
                             margin-top: 1rem;
 
+                            input {
+                                height: 50px;
+                            }
+
                             input,textarea {
                                 width: 100%;
                                 padding: 1rem 2rem;
